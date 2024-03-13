@@ -118,6 +118,53 @@ function addRole() {
     });
   });
 })
-}
+};
+
+function addEmployee() {
+  db.query('SELECT * FROM role', (err, results) => {
+    const roleArray = results.map(role => ({
+      name: role.title, value: role.id
+    }))
+
+  db.query('SELECT * FROM employee', (err, results) => {
+    const employeeArray = results.map(empl => ({
+      name: empl.first_name.last_name, value: empl.id
+    }))
+
+  inquirer.prompt(
+    [
+      {
+        type: 'input',
+        name: 'first_name',
+        message: 'What is their First Name?'
+      },
+      {
+        type: 'input',
+        name: 'last_name',
+        message: 'What is their Last Name?'
+      },
+      {
+        type: 'list',
+        name: 'role_id',
+        message: 'What Position were they hired for?',
+        choices: roleArray
+      },
+      {
+        type: 'list',
+        name: 'department_id',
+        message: 'Who is their Manager?',
+        choices: employeeArray
+      },
+    ]
+  ).then (answers => {
+    db.query('INSERT into employee SET ?', answers, function (err, results) {
+      console.table(results);
+      return menu()
+    });
+  })
+  })
+  })
+};
+
 
 menu();
