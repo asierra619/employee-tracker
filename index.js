@@ -128,7 +128,7 @@ function addEmployee() {
 
   db.query('SELECT * FROM employee', (err, results) => {
     const employeeArray = results.map(empl => ({
-      name: empl.first_name.last_name, value: empl.id
+      name: `${empl.first_name}${empl.last.name}`, value: empl.id
     }))
 
   inquirer.prompt(
@@ -165,6 +165,5 @@ function addEmployee() {
   })
   })
 };
-
 
 menu();
