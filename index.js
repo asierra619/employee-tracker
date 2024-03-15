@@ -128,7 +128,7 @@ function addEmployee() {
 
   db.query('SELECT * FROM employee', (err, results) => {
     const employeeArray = results.map(empl => ({
-      name: `${empl.first_name}${empl.last.name}`, value: empl.id
+      name: `${empl.first_name} ${empl.last_name}`, value: empl.id
     }))
 
   inquirer.prompt(
@@ -151,7 +151,7 @@ function addEmployee() {
       },
       {
         type: 'list',
-        name: 'department_id',
+        name: 'manager_id',
         message: 'Who is their Manager?',
         choices: employeeArray
       },
@@ -165,5 +165,47 @@ function addEmployee() {
   })
   })
 };
+
+// Update Employee Role
+function updateEmployee () {
+  db.query('SELECT * FROM employee', (err, results) => {
+    const employeeArray = results.map(empl => ({
+      name: `${empl.first_name} ${empl.last_name}`, value: empl.id
+    }))
+  
+
+    db.query('SELECT * FROM role', (err, results) => {
+      const roleArray = results.map(role => ({
+        name: role.title, value: role.id
+      }))
+  
+
+  inquirer.prompt(
+    [
+      {
+        type: 'list',
+        name: 'employee_id',
+        message: 'Which Employee would you like to Update?',
+        choices: employeeArray
+      },
+      {
+        type: 'list',
+        name: 'role_id',
+        message: 'What is their new position?',
+        choices: roleArray
+      },
+
+    ]
+  ).then (answers => {
+    db.query('UPDATE employee SET ? WHERE ?', answers, function (err, results) {
+      console.log(err);
+      console.table(results);
+      return menu()
+    });
+  })
+    })
+  })
+}
+;
 
 menu();
