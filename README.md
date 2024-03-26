@@ -46,6 +46,8 @@ Follow the prompts depending on what you would like to complete.
 
 GitHub Repo - https://github.com/asierra619/employee-tracker
 
+Demo Video - https://drive.google.com/file/d/1jJ0r2GUWjv9csvfQObKscCMRZE4jbKU7/view
+
 Screenshot of the program -
 ![screenshot of Employee Tracker in Intergrated Terminal](./assets/images/employee-tracker-screenshot.png)
 
