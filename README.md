@@ -15,8 +15,8 @@ The Employee Tracker was designed as a CMS (Content Management System) in order 
 
 ## User Story
 
-AS A business owner
-I WANT to be able to view and manage the departments, roles, and employees in my company
+AS A business owner<br />
+I WANT to be able to view and manage the departments, roles, and employees in my company<br />
 SO THAT I can organize and plan my business
 
 ## Acceptance Criteria
