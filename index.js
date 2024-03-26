@@ -47,6 +47,9 @@ function menu() {
     if (answers.option === 'Add an Employee'){
       addEmployee()
     }
+    if (answers.option === 'Update an Employee Role'){
+      updateEmployee()
+    }
   })
 }
 
@@ -197,7 +200,7 @@ function updateEmployee () {
 
     ]
   ).then (answers => {
-    db.query('UPDATE employee SET ? WHERE ?', answers, function (err, results) {
+    db.query('UPDATE employee SET role_id=? WHERE id=?', [answers.role_id, answers.employee_id], function (err, results) {
       console.log(err);
       console.table(results);
       return menu()
